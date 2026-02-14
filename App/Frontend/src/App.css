@@ -1,0 +1,65 @@
+.title {
+  text-align: center;   /* ✅ SIMPLE CENTER */
+  margin-bottom: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;  /* MAGIC ⭐ */
+  align-items: center;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Box */
+.modal-box {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 350px;
+}
+
+/* Inputs */
+.modal-box input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+/* Buttons */
+.add-btn {
+  background: royalblue;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.save-btn {
+  background: green;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+}
+
+.cancel-btn {
+  background: red;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+}
