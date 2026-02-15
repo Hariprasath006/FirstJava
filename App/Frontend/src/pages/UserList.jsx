@@ -21,6 +21,7 @@ const UserList = () => {
       .then(data => {
         const formatted = data.map(user => ({
           // SNo: user.rno,
+          id:user.id,
           Name: user.name,
           Email: user.email
         }));
