@@ -4,7 +4,8 @@ import Table from "../components/Table";
 import Modal from "../components/Modal";
 import "../Table.css";
 
-const API_URL = "http://localhost:8080/api/users";
+// const API_URL = "http://localhost:8080/api/users";
+const API_URL = "https://firstjava-2de1.onrender.com/api/users";
 
 const UserList = () => {
 
