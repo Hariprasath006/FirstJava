@@ -57,22 +57,17 @@ const UserList = () => {
       ? API_URL
       : `${API_URL}/${editId}`;
 
-fetch(url, {
-  method,
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(userData)
-})
-.then(res => res.json())
-.then(data => {
+fetch(url, options)
+  .then(async res => {
+    if (!res.ok) {
+      const msg = await res.text();
+      alert(msg);   // 🔥 SHOW ERROR
+      return;
+    }
+    loadUsers();
+    setShowModal(false);
+  });
 
-  if (data.error) {          // ✅ HANDLE DUPLICATE EMAIL
-    alert(data.error);
-    return;
-  }
-
-  loadUsers();
-  setShowModal(false);
-});
 
   const handleEdit = (user) => {
     setShowModal(true);
