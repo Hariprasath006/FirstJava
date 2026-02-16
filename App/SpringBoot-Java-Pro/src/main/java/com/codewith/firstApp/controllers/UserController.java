@@ -81,17 +81,17 @@ public class UserController {
     // ✅ CREATE USER
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody User user) {
-
         try {
             User savedUser = userService.createUser(user);
             return ResponseEntity.ok(savedUser);
-
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(
-                    Map.of("error", e.getMessage())
-            );
+        }
+        catch (RuntimeException ex) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(ex.getMessage());   // 🔥 CLEAN ERROR
         }
     }
+
 
     // ✅ READ ALL
     @GetMapping
