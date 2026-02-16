@@ -81,13 +81,15 @@ public class UserController {
     // ✅ CREATE USER
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody User user) {
+
         try {
             User savedUser = userService.createUser(user);
             return ResponseEntity.ok(savedUser);
-        } catch (RuntimeException e) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(Map.of("error", e.getMessage()));
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(
+                    Map.of("error", e.getMessage())
+            );
         }
     }
 
