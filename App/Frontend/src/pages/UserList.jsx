@@ -4,7 +4,6 @@ import Table from "../components/Table";
 import Modal from "../components/Modal";
 import "../Table.css";
 
-// const API_URL = "http://localhost:8080/api/users";
 const API_URL = "https://firstjava-2de1.onrender.com/api/users";
 
 const UserList = () => {
@@ -20,8 +19,7 @@ const UserList = () => {
       .then(res => res.json())
       .then(data => {
         const formatted = data.map(user => ({
-          // SNo: user.rno,
-          id:user.id,
+          id: user.id,
           Name: user.name,
           Email: user.email
         }));
@@ -40,38 +38,46 @@ const UserList = () => {
     setEmail("");
   };
 
- const handleSave = () => {
+  const handleSave = () => {
 
-  if (!name || !email) {
-    alert("Fill all fields");
-    return;
-  }
+    if (!name || !email) {
+      alert("Fill all fields");
+      return;
+    }
 
-  const userData =
-    editId === null
-      ? { name, email }          // ✅ ADD
-      : { rno: editId, name, email };  // ✅ UPDATE
+    const userData =
+      editId === null
+        ? { name, email }      // ✅ ADD
+        : { name, email };     // ✅ UPDATE (NO rno ❌)
 
-  const method = editId === null ? "POST" : "PUT";
-  const url = editId === null
+    const method = editId === null ? "POST" : "PUT";
+    const url = editId === null
       ? API_URL
       : `${API_URL}/${editId}`;
 
-fetch(url, options)
-  .then(async res => {
-    if (!res.ok) {
-      const msg = await res.text();
-      alert(msg);   // 🔥 SHOW ERROR
-      return;
-    }
-    loadUsers();
-    setShowModal(false);
-  });
+    // ✅ DEFINE OPTIONS 🔥🔥🔥
+    const options = {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData)
+    };
 
+    fetch(url, options)
+      .then(async res => {
+        if (!res.ok) {
+          const msg = await res.text();
+          alert(msg);   // 🔥 SHOW BACKEND ERROR
+          return;
+        }
+
+        loadUsers();
+        setShowModal(false);
+      });
+  };
 
   const handleEdit = (user) => {
     setShowModal(true);
-    //setEditId(user.SNo);
+    setEditId(user.id);     // 🔥 IMPORTANT FIX ✅
     setName(user.Name);
     setEmail(user.Email);
   };
