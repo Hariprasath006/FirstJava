@@ -14,18 +14,26 @@ const UserList = () => {
   const [email, setEmail] = useState("");
   const [editId, setEditId] = useState(null);
 
-  const loadUsers = () => {
-    fetch(API_URL)
-      .then(res => res.json())
-      .then(data => {
-        const formatted = data.map(user => ({
-          id: user.id,
-          Name: user.name,
-          Email: user.email
-        }));
-        setUsers(formatted);
-      });
-  };
+const loadUsers = () => {
+  fetch(API_URL)
+    .then(res => res.json())
+    .then(data => {
+
+      const formatted = data.map(user => ({
+        id: user.id,
+        Name: user.name,
+        Email: user.email
+      }));
+
+    
+      const sortedUsers = formatted.sort((a, b) =>
+        a.Name.localeCompare(b.Name)
+      );
+
+      setUsers(sortedUsers);
+    });
+};
+
 
   useEffect(() => {
     loadUsers();

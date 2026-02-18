@@ -6,7 +6,7 @@ const Table = ({ users, onEdit, onDelete }) => {
           <th>S.No</th>
           <th>Name</th>
           <th>Email</th>
-          <th>Edit</th>
+          <th>Update</th>
           <th>Delete</th>
         </tr>
       </thead>
